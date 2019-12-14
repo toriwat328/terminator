@@ -6,30 +6,32 @@ class Issue { //will be able to be used over and over
     public $id;
     public $title;
     public $description;
-    public $datefound;
+    public $dateFound;
     public $screenshot;
-    public $isresolved;
+    public $isResolved;
     public $solution;
-    public function __construct($id, $title, $description, $datefound, $screenshot, $isresolved, $solution){  //constructor that allows us to put in parameters  - optional
+    public $projectid;
+    public function __construct($id, $title, $description, $dateFound, $screenshot, $isResolved, $solution, $projectid){  //constructor that allows us to put in parameters  - optional
         $this->id = $id; //id is equal to the parameter and the public variable
         $this->title = $title;
         $this->description = $description;
-        $this->dateFound = $datefound;
+        $this->dateFound = $dateFound;
         $this->screenshot = $screenshot;
-        $this->isResolved = $isresolved;
+        $this->isResolved = $isResolved;
         $this->solution = $solution;
+        $this->projectid = $projectid;
     }
 }
 class Issues { //factory class - deal with all things updating, creating, deleting
     static function create($issue){
-        $query = "INSERT INTO issue (title, description, datefound, screenshot, isresolved, solution, projectid) VALUES ($1, $2, $3, $4, $5, $6, $7)"; //SQL statement
-        $query_params = array($issue->title, $issue->description, $issue->datefound, $issue->screenshot, $issue->isresolved, $issue->solution, $issue->projectid );
+        $query = "INSERT INTO issue (title, description, dateFound, screenshot, isResolved, solution, projectid) VALUES ($1, $2, $3, $4, $5, $6, $7)"; //SQL statement
+        $query_params = array($issue->title, $issue->description, $issue->dateFound, $issue->screenshot, $issue->isResolved, $issue->solution, $issue->projectid );
         pg_query_params($query, $query_params); //SQL statement and the parameters for the statement
-        return self::all(); //sends back everything in the database
+        // return self::all(); //sends back everything in the database
     }
     static function update($updated_issue){
-        $query = "UPDATE issue SET title = $1, description = $2, datefound = $3, screenshot = $4, isresolved = $5, solution = $6 WHERE id = $7";
-        $query_params = array($updated_issue->title, $updated_issue->description, $updated_issue->datefound, $updated_issue->screenshot, $updated_issue->isresolved, $updated_issue->solution, $updated_issue->id); //actually saved in the database
+        $query = "UPDATE issue SET title = $1, description = $2, dateFound = $3, screenshot = $4, isResolved = $5, solution = $6 WHERE id = $7";
+        $query_params = array($updated_issue->title, $updated_issue->description, $updated_issue->dateFound, $updated_issue->screenshot, $updated_issue->isResolved, $updated_issue->solution, $updated_issue->id); //actually saved in the database
         pg_query_params($query, $query_params);
         return self::all();
     }
@@ -47,9 +49,9 @@ class Issues { //factory class - deal with all things updating, creating, deleti
                                intval($row_object->id),
                                $row_object->title,
                                $row_object->description,
-                               $row_object->datefound,
+                               $row_object->dateFound,
                                $row_object->screenshot,
-                                $row_object->isresolved,
+                                $row_object->isResolved,
                                  $row_object->solution
 
                            );
@@ -96,9 +98,9 @@ class Issues { //factory class - deal with all things updating, creating, deleti
                                 intval($row_object->id),
                                 $row_object->title,
                                 $row_object->description,
-                                $row_object->datefound,
+                                $row_object->dateFound,
                                 $row_object->screenshot,
-                                 $row_object->isresolved,
+                                 $row_object->isResolved,
                                   $row_object->solution
 
                             );

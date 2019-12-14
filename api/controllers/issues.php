@@ -5,10 +5,13 @@ if($_REQUEST['action'] === 'index'){  //take a look at the (req.query or params)
     echo json_encode(Issues::all());
 } else if($_REQUEST['action'] === 'create'){
     $request_body = file_get_contents('php://input');
+
     $body_object = json_decode($request_body);
-    $new_issue = new Issue(null, $body_object->title, $body_object->description, $body_object->datefound, $body_object->screenshot, $body_object->isresolved, $body_object->solution);
-    $all_issues = Issues::create($new_issue);
-    echo json_encode($all_issues);
+
+    $new_issue = new Issue(null, $body_object->title, $body_object->description, $body_object->dateFound, $body_object->screenshot, $body_object->isResolved, $body_object->solution, $body_object->projectid);
+
+    Issues::create($new_issue);
+    // echo json_encode($all_issues);
 } else if ($_REQUEST['action'] === 'update'){
     $request_body = file_get_contents('php://input');
     $body_object = json_decode($request_body);
