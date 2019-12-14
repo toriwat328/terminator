@@ -8,14 +8,20 @@ if($_REQUEST['action'] === 'index'){  //take a look at the (req.query or params)
 
     $body_object = json_decode($request_body);
 
-    $new_issue = new Issue(null, $body_object->title, $body_object->description, $body_object->dateFound, $body_object->screenshot, $body_object->isResolved, $body_object->solution, $body_object->projectid);
+    $new_issue = new Issue(null, $body_object->title, $body_object->description, $body_object->projectid, $body_object->datefound, $body_object->screenshot, $body_object->isresolved, $body_object->solution);
 
-    Issues::create($new_issue);
-    // echo json_encode($all_issues);
+    // echo json_encode($new_issue);
+
+    $all_issues = Issues::create($new_issue);
+    echo json_encode($all_issues);
 } else if ($_REQUEST['action'] === 'update'){
     $request_body = file_get_contents('php://input');
+
     $body_object = json_decode($request_body);
-    $updated_issue = new Issue($_REQUEST['id'], $body_object->title, $body_object->description, $body_object->datefound, $body_object->screenshot, $body_object->isresolved, $body_object->solution); //just holding data
+
+    // echo json_encode($body_object);
+
+    $updated_issue = new Issue($_REQUEST['id'], $body_object->title, $body_object->description, $body_object->projectid, $body_object->datefound, $body_object->screenshot, $body_object->isresolved, $body_object->solution); //just holding data
     $all_issues = Issues::update($updated_issue);
     echo json_encode($all_issues);
 } else if ($_REQUEST['action'] === 'delete'){
