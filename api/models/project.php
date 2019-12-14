@@ -19,26 +19,26 @@ class Project { //will be able to be used over and over
 }
 class Projects { //factory class - deal with all things updating, creating, deleting
     static function create($project){
-        $query = "INSERT INTO projects (name, start, deadline, language) VALUES ($1, $2, $3)"; //SQL statement
+        $query = "INSERT INTO projects (name, start, deadline, language) VALUES ($1, $2, $3, $4)"; //SQL statement
         $query_params = array($project->name, $project->start, $project->deadline, $project->language);
         pg_query_params($query, $query_params); //SQL statement and the parameters for the statement
         return self::all(); //sends back everything in the database
     }
     static function update($updated_project){
-        $query = "UPDATE project SET name = $1, start = $2, deadline = $3, language = $4 WHERE id = $5";
-        $query_params = array($updated_project->name, $updated_project->start, $updated_project->deadline, $updated_project->language $updated_museum->id); //actually saved in the database
+        $query = "UPDATE projects SET name = $1, start = $2, deadline = $3, language = $4 WHERE id = $5";
+        $query_params = array($updated_project->name, $updated_project->start, $updated_project->deadline, $updated_project->language, $updated_project->id); //actually saved in the database
         pg_query_params($query, $query_params);
         return self::all();
     }
     static function delete($id){
-        $query = "DELETE FROM project WHERE id = $1";
+        $query = "DELETE FROM projects WHERE id = $1";
         $query_params = array($id);
         pg_query_params($query, $query_params);
         return self::all();
     }
     static function show($project_id){
         $projects = array();
-        $results = pg_query("SELECT project.*, issue.id AS project_issue_id, issue.title, issue.description, issue.type, art.year FROM projects LEFT JOIN issue ON projects.id = issue.projectid WHERE projects.id = $project_id");
+        $results = pg_query("SELECT projects.*, issue.id AS project_issue_id, issue.title, issue.description, issue.datefound, issue.screenshot, issue.isresolved, issue.solution FROM projects LEFT JOIN issue ON projects.id = issue.projectid WHERE projects.id = $project_id");
         $row_object = pg_fetch_object($results);
         $last_project_id = null;
         while($row_object){
@@ -64,28 +64,32 @@ class Projects { //factory class - deal with all things updating, creating, dele
                             $row_object->solution
                         );
                         $last_index_of_projects = count($projects)-1;
-                        $most_recently_added_project = $museums[$last_index_of_museums];
+                        $most_recently_added_project = $projects[$last_index_of_projects];
                         $most_recently_added_project->project_issue_id[] = $new_issue;
                     }
                     $row_object = pg_fetch_object($results);
                 }
         return $projects;
     }
-    static function all(){ 
+    static function all(){
         $projects = array();
 
-        $results = pg_query("SELECT project.*, issue.id AS project_issue_id, issue.title, issue.description, issue.type, art.year FROM projects LEFT JOIN issue ON projects.id = issue.projectid ORDER BY projects.id;"); //pg returns the dataset that you cant look at
+        $results = pg_query("SELECT projects.*, issue.id AS project_issue_id, issue.title, issue.description, issue.datefound, issue.screenshot, issue.isresolved, issue.solution FROM projects LEFT JOIN issue ON projects.id = issue.projectid ORDER BY projects.id;");
+
         $row_object = pg_fetch_object($results);
+
         $last_project_id = null;
+
         while($row_object){
             if($row_object->id !== $last_project_id){
                 $new_project = new Project(
                     intval($row_object->id),
                     $row_object->name,
                     $row_object->start,
-                    $row_object->$deadline,
-                    $row_object->$language
+                    $row_object->deadline,
+                    $row_object->language
                 );
+
                     $projects[] = $new_project;
                     $last_project_id = $row_object->id;
                 }
@@ -100,7 +104,7 @@ class Projects { //factory class - deal with all things updating, creating, dele
                             $row_object->solution
                         );
                         $last_index_of_projects = count($projects)-1;
-                        $most_recently_added_project = $museums[$last_index_of_museums];
+                        $most_recently_added_project = $projects[$last_index_of_projects];
                         $most_recently_added_project->project_issue_id[] = $new_issue;
                     }
                     $row_object = pg_fetch_object($results);

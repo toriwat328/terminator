@@ -6,13 +6,13 @@ if($_REQUEST['action'] === 'index'){  //take a look at the (req.query or params)
 } else if($_REQUEST['action'] === 'create'){
     $request_body = file_get_contents('php://input');
     $body_object = json_decode($request_body);
-    $new_issue = new Issue(null, $body_object->title, $body_object->description, $body_object->dateFound, $body_object->screenshot, $body_object->isResolved, $body_object->solution);
+    $new_issue = new Issue(null, $body_object->title, $body_object->description, $body_object->datefound, $body_object->screenshot, $body_object->isresolved, $body_object->solution);
     $all_issues = Issues::create($new_issue);
     echo json_encode($all_issues);
 } else if ($_REQUEST['action'] === 'update'){
     $request_body = file_get_contents('php://input');
     $body_object = json_decode($request_body);
-    $updated_issue = new Issue($_REQUEST['id'], $body_object->title, $body_object->description, $body_object->dateFound, $body_object->screenshot, $body_object->isResolved, $body_object->solution); //just holding data
+    $updated_issue = new Issue($_REQUEST['id'], $body_object->title, $body_object->description, $body_object->datefound, $body_object->screenshot, $body_object->isresolved, $body_object->solution); //just holding data
     $all_issues = Issues::update($updated_issue);
     echo json_encode($all_issues);
 } else if ($_REQUEST['action'] === 'delete'){

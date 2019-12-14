@@ -14,3 +14,12 @@ INSERT INTO issue (title, description, projectid, dateFound, screenshot, isResol
 INSERT INTO issue (title, description, projectid, dateFound, screenshot, isResolved, solution) VALUES ('SQL Bug Part 2', 'SQL is not working', 2, '12/17', 'https://i.imgur.com/MXiZRI0.png', false, '');
 
 INSERT INTO issue (title, description, projectid, dateFound, screenshot, isResolved, solution) VALUES ('Terminator App React Bug', 'this.state is undefined', 1, '12/16', 'https://i.imgur.com/MXiZRI0.png', false, '');
+
+
+
+
+
+
+
+
+SELECT projects.*, issue.id AS project_issue_id, issue.title, issue.description, issue.datefound, issue.screenshot, issue.isresolved, issue.solution FROM projects LEFT JOIN issue ON projects.id = issue.projectid ORDER BY projects.id;
