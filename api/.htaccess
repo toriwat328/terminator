@@ -1,0 +1,43 @@
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+Header always set Access-Control-Allow-Headers "Content-Type"
+
+
+
+RewriteEngine On
+
+
+#FOR PROJECTS
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^projects$ controllers/projects.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^projects/([0-9]+)$ controllers/projects.php?action=show&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^projects$ controllers/projects.php?action=create
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^projects/([0-9]+)$ controllers/projects.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^projects/([0-9]+)$ controllers/projects.php?action=delete&id=$1
+
+
+#FOR ISSUES
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^issues$ controllers/issues.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^issues/([0-9]+)$ controllers/issues.php?action=show&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^issues$ controllers/issues.php?action=create
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^issues/([0-9]+)$ controllers/issues.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^issues/([0-9]+)$ controllers/issues.php?action=delete&id=$1
