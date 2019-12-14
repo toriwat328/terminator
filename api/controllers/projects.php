@@ -11,9 +11,13 @@ if($_REQUEST['action'] === 'index'){
      // echo '{"test":true}'; // Test
     $request_body = file_get_contents('php://input'); //this line is the user input (request_body = userinput)
 
+    // echo $request_body;
+
     $body_object = json_decode($request_body); //decode json with a string
 
     $new_project = new Project(null, $body_object->name, $body_object->start, $body_object->deadline, $body_object->language);
+
+    // echo json_encode($new_project);
 
     $all_projects = Projects::create($new_project);
 
