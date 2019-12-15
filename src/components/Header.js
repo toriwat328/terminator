@@ -3,9 +3,10 @@ import React from 'react'
 class Header extends React.Component {
     render () {
         return (
-            <aside>
-                <h1>I'm Header component</h1>
-            </aside>
+            <header>
+                <span>squash coding bugs with the</span>
+                <h1>TERMINATOR</h1>
+            </header>
         )
     }
 }
