@@ -72,7 +72,7 @@ class Form extends React.Component {
                 </label>
                 <label>
                     Resolved
-                    <input type="text" placeholder="Resolved" id="bugIsResolved" defaultValue={this.state.isresolved}
+                    <input type="checkbox" placeholder="Resolved" id="bugIsResolved" defaultValue={this.state.isresolved}
                     name="isresolved"
                     onChange={this.handleChange}/>
                 </label>
