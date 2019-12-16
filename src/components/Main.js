@@ -6,7 +6,7 @@ import BugDetails from './BugDetails.js'
 
 let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:8888'
+    baseUrl = 'http://localhost:8888/api'
 } else {
     console.log('this is for heroku');
 }
