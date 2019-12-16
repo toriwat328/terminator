@@ -20,7 +20,7 @@ class Projects extends React.Component {
                     <ul>
                         <li onClick={() => {
                             this.props.showProject(this.props.projectData);
-                            
+
 
 
                         }}>View Project</li>

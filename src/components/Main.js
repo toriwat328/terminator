@@ -32,6 +32,7 @@ class Main extends React.Component {
 
     handleCreate = (createProject) => {
         console.log('this is handleCreate');
+        console.log(createProject);
         fetch(`${baseUrl}/projects`, {
             body: JSON.stringify(createProject),
             method: 'POST',
@@ -41,13 +42,15 @@ class Main extends React.Component {
             }
         })
         .then(createdProject => {
-            return createdProject.json()
+            return console.log(createdProject.json());
         })
         .then(jsonedProject => {
-            this.props.handleView('home')
+            // this.props.handleView('home')
             this.setState(prevState => {
                 prevState.projects = jsonedProject
                 return { projects: prevState.projects}
+            }, () => {
+                console.log(this.state.projects);
             })
         })
         .catch(err => console.log(err))

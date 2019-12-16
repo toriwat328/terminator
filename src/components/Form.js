@@ -28,10 +28,22 @@ class Form extends React.Component {
     }
 
     handleChange(event){
-        this.setState({
-            [event.target.id]: event.target.value
-        });
-    }
+        if(this.props.view.page === 'addProject' || this.props.view.page === 'editProject'){
+            this.setState({
+                projects: {
+                    [event.target.name]: event.target.value
+                }
+            })
+
+        } else if(this.props.view.page === 'addBug' || this.props.view.page === 'editBug'){
+            this.setState({
+                bugs: {
+                    [event.target.name]: event.target.value
+                }
+            })
+        }
+
+}
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -80,22 +92,22 @@ class Form extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Name
-                            <input type="text" placeholder="Name" id="name" defaultValue={this.state.projects.name} name="projectName"
+                            <input type="text" placeholder="Name" id="name" defaultValue={this.state.name} name="name"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Start
-                            <input type="text" placeholder="Start" id="start" defaultValue={this.state.projects.start} name="projectStart"
+                            <input type="text" placeholder="Start" id="start" defaultValue={this.state.start} name="start"
                             onChange={this.handleChange}/>
                         </label>
                         <label>
                             Deadline
-                            <input type="text" placeholder="Deadline" id="deadline" defaultValue={this.state.projects.deadline} name="projectDeadline"
+                            <input type="text" placeholder="Deadline" id="deadline" defaultValue={this.state.deadline} name="deadline"
                             onChange={this.handleChange}/>
                         </label>
                         <label>
                             Language
-                            <input type="text" placeholder="Language" id="language" defaultValue={this.state.projects.language} name="projectLanguage"
+                            <input type="text" placeholder="Language" id="language" defaultValue={this.state.language} name="language"
                             onChange={this.handleChange}/>
                         </label>
                         <input type="submit"
