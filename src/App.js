@@ -9,25 +9,39 @@ class App extends React.Component {
         this.state = {
             view: {
                 page: 'home',
-                pageTitle: 'Bug Log'
+                pageTitle: 'Project Log'
             },
-            formInputs: {
+            formInputsProjects: {
+                id: null,
+                name: null,
+                start: null,
+                deadline: null,
+                language: null,
+
+            },
+            formInputsBugs: {
                 id: null,
                 title: null,
                 description: null,
                 projectid: null,
                 datefound: null,
                 screenshot: null,
-                isresolved: null,
-                solution: null,
-
+                isresolved: false,
+                solution: null
             }
         }
     }
 
-    handleView = (view, bugData) => {
+    handleView = (view, projectData, bugData) => {
         let pageTitle = ''
-        let formInputs = {
+        let formInputsProjects = {
+            id: null,
+            name: '',
+            start: '',
+            deadline: '',
+            language: ''
+        }
+        let formInputsBugs = {
             id: null,
             title: '',
             description: '',
@@ -37,16 +51,36 @@ class App extends React.Component {
             isresolved: false,
             solution: ''
         }
+
         switch(view) {
             case 'home':
-                pageTitle = 'Bug Log'
+                pageTitle = 'Project Log'
                 break
-            case 'addIssue':
+            case 'addProject':
+                pageTitle = 'Create New Project'
+                break
+            case 'editProject':
+                pageTitle = 'Update Project Details'
+                formInputsProjects = {
+                    id: projectData.id,
+                    name: projectData.title,
+                    description: projectData.description,
+                    projectid: projectData.projectid,
+                    datefound: projectData.datefound
+                }
+                break
+            case 'showProject':
+                pageTitle = 'Project Details'
+                break
+            case 'showBug' :
+                pageTitle = 'Bug Details'
+                break
+            case 'addBug':
                 pageTitle = 'Record New Bug'
                 break
-            case 'editIssue':
-                pageTitle = 'Update Bug Record'
-                formInputs = {
+            case 'editBug':
+                pageTitle = 'Update Bug Issue'
+                formInputsBugs = {
                     id: bugData.id,
                     title: bugData.title,
                     description: bugData.description,
@@ -54,7 +88,7 @@ class App extends React.Component {
                     datefound: bugData.datefound,
                     screenshot: bugData.screenshot,
                     isresolved: bugData.isresolved,
-                    solution: bugData.solution,
+                    solution: bugData.solution
                 }
                 break
             default:
@@ -66,7 +100,8 @@ class App extends React.Component {
                     page: view,
                     pageTitle: pageTitle
                 },
-                formInputs: formInputs
+                formInputsProjects: formInputsProjects,
+                formInputsBugs: formInputsBugs
             })
 
     }
@@ -81,7 +116,8 @@ class App extends React.Component {
                     <Main
                         view={this.state.view}
                         handleView={this.handleView}
-                        formInputs={this.state.formInputs}
+                        formInputsProjects={this.state.formInputsProjects}
+                        formInputsBugs={this.state.formInputsBugs}
                     />
                 </div>
             </div>

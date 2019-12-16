@@ -21,10 +21,15 @@ class Bugs extends React.Component {
                 </div>
                 <div className="bug-options">
                     <ul>
+                    <li onClick={() => {
+                        this.props.showBug(this.props.bugData);
+                    }}>View Bug</li>
+
                         <li onClick={() => {
-                            this.props.handleView('editIssue',
+                            this.props.handleView('editBug',
                             this.props.bugData)
                         }}>Edit Bug</li>
+
                         <li onClick={() => {
                             this.props.deleteBug(this.props.bugData.id)
                         }}>Delete Bug</li>
