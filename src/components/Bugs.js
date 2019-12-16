@@ -11,7 +11,7 @@ class Bugs extends React.Component {
                     <p>
                     Description: {this.props.bugData.description}
                     </p>
-                    <img src={this.props.bugData.screenshot} alt="Screenshot of error message" />
+                    <img className="screenshot" src={this.props.bugData.screenshot} alt="Screenshot of error message" />
                     <p>Discovered on: {this.props.bugData.datefound}</p>
                     <p>Bug resolved? {this.props.bugData.isresolved}</p>
 

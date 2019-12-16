@@ -36,6 +36,7 @@ class Main extends React.Component {
             }
         })
         .then(createdBug => {
+            console.log('bug created');
             return createdBug.json()
         })
         .then(jsonedBug => {

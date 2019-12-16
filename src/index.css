@@ -6,22 +6,43 @@
     --blue: #40C9CE;
     --orange: #FC9044;
     --robot: 'Orbitron', sans-serif;
-    --text: 'Roboto', sans-serif;
+    --text:  'Quantico', sans-serif;
 }
 
+/* Manage default settings for all */
 * {
     background-color: var(--black);
     color: var(--light-green);
     font-family: var(--text);
 }
 
+/* Set display default for outermost parent container */
+.outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header will be constant throughout states */
 header {
     border-bottom: 3px dashed var(--dark-green);
 }
 
-img {
+.running-bugs {
+    height: 40px;
+}
+
+/* Set screenshot images max-width */
+.screenshot {
     max-width: 100px; /* keeps screenshots small and manageble */
 }
+
+Aside {
+    display: inline-flex;
+    flex-direction: column;
+    max-width: 25%;
+
+}
+
 
 h1 {
     color: var(--orange);
