@@ -37,9 +37,13 @@ class Form extends React.Component {
         event.preventDefault()
         console.log(this.state);
         if(this.props.view.page === 'addProject') {
-            this.props.handleCreate(this.state)
+            this.props.handleCreate(this.state.projects)
         } else if(this.props.view.page === 'editProject') {
-            this.props.handleUpdate(this.state)
+            this.props.handleUpdate(this.state.projects)
+        } else if(this.props.view.page === 'addBug'){
+            this.props.handleCreate(this.state.bugs)
+        } else if(this.props.view.page === 'editBug'){
+            this.props.handleUpdate(this.state.bugs)
         }
     }
 

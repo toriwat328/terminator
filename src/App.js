@@ -18,11 +18,21 @@ class App extends React.Component {
                 deadline: null,
                 language: null,
 
+            },
+            formInputsBugs: {
+                id: null,
+                title: null,
+                description: null,
+                projectid: null,
+                datefound: null,
+                screenshot: null,
+                isresolved: false,
+                solution: null
             }
         }
     }
 
-    handleView = (view, projectData) => {
+    handleView = (view, projectData, bugData) => {
         let pageTitle = ''
         let formInputsProjects = {
             id: null,
@@ -30,6 +40,16 @@ class App extends React.Component {
             start: '',
             deadline: '',
             language: ''
+        }
+        let formInputsBugs = {
+            id: null,
+            title: '',
+            description: '',
+            projectid: null,
+            datefound: '',
+            screenshot: '',
+            isresolved: false,
+            solution: ''
         }
 
         switch(view) {
@@ -60,6 +80,16 @@ class App extends React.Component {
                 break
             case 'editBug':
                 pageTitle = 'Update Bug Issue'
+                formInputsBugs = {
+                    id: bugData.id,
+                    title: bugData.title,
+                    description: bugData.description,
+                    projectid: bugData.projectid,
+                    datefound: bugData.datefound,
+                    screenshot: bugData.screenshot,
+                    isresolved: bugData.isresolved,
+                    solution: bugData.solution
+                }
                 break
             default:
                 break
@@ -70,7 +100,8 @@ class App extends React.Component {
                     page: view,
                     pageTitle: pageTitle
                 },
-                formInputsProjects: formInputsProjects
+                formInputsProjects: formInputsProjects,
+                formInputsBugs: formInputsBugs
             })
 
     }
@@ -86,6 +117,7 @@ class App extends React.Component {
                         view={this.state.view}
                         handleView={this.handleView}
                         formInputsProjects={this.state.formInputsProjects}
+                        formInputsBugs={this.state.formInputsBugs}
                     />
                 </div>
             </div>

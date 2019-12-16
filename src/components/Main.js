@@ -16,6 +16,7 @@ class Main extends React.Component {
         super(props)
         this.state = {
             projects: [],
+            bugs: [],
             projectShow: [],
             bugShow: []
         }
@@ -47,6 +48,28 @@ class Main extends React.Component {
             this.setState(prevState => {
                 prevState.projects = jsonedProject
                 return { projects: prevState.projects}
+            })
+        })
+        .catch(err => console.log(err))
+    }
+
+    handleCreateBug = (createBug) => {
+        fetch(`${baseUrl}/issues`, {
+            body: JSON.stringify(createBug),
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(createdBug => {
+            return createdBug.json()
+        })
+        .then(jsonedBugs => {
+            this.props.handleView('home')
+            this.setState(prevState => {
+                prevState.bugs = jsonedBugs
+                return { bugs: prevState.bugs}
             })
         })
         .catch(err => console.log(err))
@@ -146,6 +169,7 @@ class Main extends React.Component {
                         handleCreate={this.handleCreate}
                         handleUpdate={this.handleUpdate}
                         formInputsProjects={this.props.formInputsProjects}
+                        formInputsBugs={this.props.formInputsBugs}
                         view={this.props.view}
                     />
                 }
