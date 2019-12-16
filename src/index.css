@@ -1,4 +1,30 @@
+/* Set variables */
+:root {
+    --black: #000000;
+    --light-green: #6BD425;
+    --dark-green: #0F5B4F;
+    --blue: #40C9CE;
+    --orange: #FC9044;
+    --robot: 'Orbitron', sans-serif;
+    --text: 'Roboto', sans-serif;
+}
+
+* {
+    background-color: var(--black);
+    color: var(--light-green);
+    font-family: var(--text);
+}
+
+header {
+    border-bottom: 3px dashed var(--dark-green);
+}
 
 img {
     max-width: 100px; /* keeps screenshots small and manageble */
+}
+
+h1 {
+    color: var(--orange);
+    font-family: var(--robot);
+    font-size: 36px;
 }
