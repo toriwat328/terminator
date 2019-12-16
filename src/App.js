@@ -31,6 +31,7 @@ class App extends React.Component {
             deadline: '',
             language: ''
         }
+
         switch(view) {
             case 'home':
                 pageTitle = 'Project Log'
@@ -48,10 +49,16 @@ class App extends React.Component {
                     datefound: projectData.datefound
                 }
                 break
-            case 'addIssue':
+            case 'showProject':
+                pageTitle = 'Project Details'
+                break
+            case 'showBug' :
+                pageTitle = 'Bug Details'
+                break
+            case 'addBug':
                 pageTitle = 'Record New Bug'
                 break
-            case 'editIssue':
+            case 'editBug':
                 pageTitle = 'Update Bug Issue'
                 break
             default:

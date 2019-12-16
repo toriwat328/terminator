@@ -1,6 +1,8 @@
 import React from 'react'
 import Projects from './Projects.js'
 import Form from './Form.js'
+import ProjectDetails from './ProjectDetails.js'
+import BugDetails from './BugDetails.js'
 
 let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
@@ -13,7 +15,9 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            projects: []
+            projects: [],
+            projectShow: [],
+            bugShow: []
         }
     }
 
@@ -80,6 +84,35 @@ class Main extends React.Component {
             .catch(err => console.log(err))
     }
 
+    showProject = (project) => {
+        fetch(`${baseUrl}/projects/${project.id}`)
+        .then(data=> data.json())
+        .then(showjData=> {
+            this.setState({
+                projectShow: showjData
+            }, () => {
+                this.props.handleView('showProject');
+                console.log(this.state.projectShow);
+            })
+        }).catch(err=>console.log(err))
+
+    }
+
+    showBug = (bug) => {
+        fetch(`${baseUrl}/issues/${bug.id}`)
+        .then(data=> data.json())
+        .then(showBugjData=> {
+            this.setState({
+                bugShow: showBugjData
+            }, () => {
+                this.props.handleView('showBug');
+                console.log(this.state.bugShow);
+            })
+        }).catch(err=>console.log(err))
+
+    }
+
+
     componentDidMount() {
         this.fetchProjects()
     }
@@ -90,6 +123,9 @@ class Main extends React.Component {
             <main>
                 <h1>{this.props.view.pageTitle}</h1>
 
+
+
+
                 { this.props.view.page === 'home'
                     ? this.state.projects.map((projectData) => (
                         <Projects
@@ -97,8 +133,13 @@ class Main extends React.Component {
                             projectData={projectData}
                             handleView={this.props.handleView}
                             deleteProject={this.deleteProject}
+                            showProject={this.showProject}
+
                         />
-                    ))
+                    )): this.props.view.page === 'showProject' ?
+                    <ProjectDetails  showData={this.state.projectShow} handleView={this.props.handleView} showBug={this.showBug} />
+                    : this.props.view.page === 'showBug' ?
+                    <BugDetails showBugData={this.state.bugShow} handleView={this.props.handleView}/>
 
 
                     : <Form

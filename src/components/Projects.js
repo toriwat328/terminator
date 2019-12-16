@@ -1,6 +1,7 @@
 import React from 'react'
 
-class Bugs extends React.Component {
+class Projects extends React.Component {
+
     render () {
         return (
             <article>
@@ -18,6 +19,12 @@ class Bugs extends React.Component {
                 <div className="bug-options">
                     <ul>
                         <li onClick={() => {
+                            this.props.showProject(this.props.projectData);
+                            
+
+
+                        }}>View Project</li>
+                        <li onClick={() => {
                             this.props.handleView('editProject',
                             this.props.projectData)
                         }}>Edit Project</li>
@@ -31,4 +38,4 @@ class Bugs extends React.Component {
     }
 }
 
-export default Bugs
+export default Projects
