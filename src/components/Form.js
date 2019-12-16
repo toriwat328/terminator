@@ -5,23 +5,25 @@ class Form extends React.Component {
     constructor() {
         super()
         this.state = {
-            projects: {
+
                 id: null,
                 name: '',
                 start: '',
                 deadline: '',
-                language: ''
-            },
-            bugs: {
-                id: null,
-                title: '',
-                description: '',
-                projectid: null,
-                datefound: '',
-                screenshot: '',
-                isresolved: false,
-                solution: ''
-            }
+                language: '',
+                project_issue_id: [
+                    {
+                        id: null,
+                        title: '',
+                        description: '',
+                        projectid: null,
+                        datefound: '',
+                        screenshot: '',
+                        isresolved: false,
+                        solution: ''
+                    }
+                ]
+
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -30,28 +32,27 @@ class Form extends React.Component {
     handleChange(event){
         if(this.props.view.page === 'addProject' || this.props.view.page === 'editProject'){
             this.setState({
-                projects: {
-                    [event.target.name]: event.target.value
-                }
+
+                [event.target.name]: event.target.value
+
             })
 
         } else if(this.props.view.page === 'addBug' || this.props.view.page === 'editBug'){
             this.setState({
-                bugs: {
-                    [event.target.name]: event.target.value
-                }
+                
+                [event.target.name]: event.target.value
+
             })
         }
-
-}
+    }
 
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state);
         if(this.props.view.page === 'addProject') {
-            this.props.handleCreate(this.state.projects)
+            this.props.handleCreate(this.state)
         } else if(this.props.view.page === 'editProject') {
-            this.props.handleUpdate(this.state.projects)
+            this.props.handleUpdate(this.state)
         } else if(this.props.view.page === 'addBug'){
             this.props.handleCreate(this.state.bugs)
         } else if(this.props.view.page === 'editBug'){
@@ -61,24 +62,24 @@ class Form extends React.Component {
 
     componentDidMount() {
         this.setState({
-            projects: {
-                id: this.props.formInputsProjects.id,
-                name: this.props.formInputsProjects.name,
-                start: this.props.formInputsProjects.start,
-                deadline: this.props.formInputsProjects.deadline,
-                language: this.props.formInputsProjects.language
-            },
-            bugs: {
-                id: this.props.formInputsBugs.id,
-                title: this.props.formInputsBugs.title,
-                description: this.props.formInputsBugs.description,
-                projectid: this.props.formInputsBugs.projectid,
-                datefound: this.props.formInputsBugs.datefound,
-                screenshot: this.props.formInputsBugs.screenshot,
-                isresolved: this.props.formInputsBugs.isresolved,
-                solution: this.props.formInputsBugs.solution
-            }
 
+            id: this.props.formInputsProjects.id,
+            name: this.props.formInputsProjects.name,
+            start: this.props.formInputsProjects.start,
+            deadline: this.props.formInputsProjects.deadline,
+            language: this.props.formInputsProjects.language,
+            project_issue_id: [
+                {
+                    id: this.props.formInputsBugs.id,
+                    title: this.props.formInputsBugs.title,
+                    description: this.props.formInputsBugs.description,
+                    projectid: this.props.formInputsBugs.projectid,
+                    datefound: this.props.formInputsBugs.datefound,
+                    screenshot: this.props.formInputsBugs.screenshot,
+                    isresolved: this.props.formInputsBugs.isresolved,
+                    solution: this.props.formInputsBugs.solution
+                }
+            ]
 
         })
     }
@@ -120,37 +121,37 @@ class Form extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Title
-                            <input type="text" placeholder="Title" id="title" defaultValue={this.state.bugs.title} name="bugTitle"
+                            <input type="text" placeholder="Title" id="title" defaultValue={this.state.title} name="bugTitle"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Description
-                            <input type="text" placeholder="Description" id="description" defaultValue={this.state.bugs.description} name="bugDescription"
+                            <input type="text" placeholder="Description" id="description" defaultValue={this.state.description} name="bugDescription"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Project ID
-                            <input type="text" placeholder="Project ID" id="projectid" defaultValue={this.state.bugs.projectid} name="bugProjectID"
+                            <input type="text" placeholder="Project ID" id="projectid" defaultValue={this.state.projectid} name="bugProjectID"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Date Found
-                            <input type="text" placeholder="Date Found" id="datefound" defaultValue={this.state.bugs.datefound} name="bugDateFound"
+                            <input type="text" placeholder="Date Found" id="datefound" defaultValue={this.state.datefound} name="bugDateFound"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Screenshot
-                            <input type="text" placeholder="Screenshot" id="screenshot" defaultValue={this.state.bugs.screenshot} name="bugScreenshot"
+                            <input type="text" placeholder="Screenshot" id="screenshot" defaultValue={this.state.screenshot} name="bugScreenshot"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             is This Issue Resolved?
-                            <input type="text" placeholder="Resolved?" id="isresolved" defaultValue={this.state.bugs.isresolved} name="bugIsResolved"
+                            <input type="text" placeholder="Resolved?" id="isresolved" defaultValue={this.state.isresolved} name="bugIsResolved"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Solution
-                            <input type="text" placeholder="Solution" id="solution" defaultValue={this.state.bugs.solution} name="bugSolution"
+                            <input type="text" placeholder="Solution" id="solution" defaultValue={this.state.solution} name="bugSolution"
                              onChange={this.handleChange}/>
                         </label>
                         <input type="submit"

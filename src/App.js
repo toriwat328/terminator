@@ -33,6 +33,7 @@ class App extends React.Component {
     }
 
     handleView = (view, projectData, bugData) => {
+        console.log(projectData);
         let pageTitle = ''
         let formInputsProjects = {
             id: null,
@@ -51,8 +52,9 @@ class App extends React.Component {
             isresolved: false,
             solution: ''
         }
-
+        console.log(projectData);
         switch(view) {
+
             case 'home':
                 pageTitle = 'Project Log'
                 break
@@ -68,6 +70,7 @@ class App extends React.Component {
                     projectid: projectData.projectid,
                     datefound: projectData.datefound
                 }
+                console.log(formInputsProjects);
                 break
             case 'showProject':
                 pageTitle = 'Project Details'

@@ -42,15 +42,16 @@ class Main extends React.Component {
             }
         })
         .then(createdProject => {
-            return console.log(createdProject.json());
+            return createdProject.json();
         })
         .then(jsonedProject => {
-            // this.props.handleView('home')
+            console.log(jsonedProject);
             this.setState(prevState => {
                 prevState.projects = jsonedProject
                 return { projects: prevState.projects}
             }, () => {
                 console.log(this.state.projects);
+                this.props.handleView('home')
             })
         })
         .catch(err => console.log(err))
