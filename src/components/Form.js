@@ -74,6 +74,7 @@ class Form extends React.Component {
 
     render () {
         return (
+
             <div>
                 {this.props.view.page === 'addProject' || this.props.view.page === 'editProject' ?
 
@@ -147,6 +148,7 @@ class Form extends React.Component {
                 }
 
             </div>
+
 
 
         )
