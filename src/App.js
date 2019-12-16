@@ -9,53 +9,50 @@ class App extends React.Component {
         this.state = {
             view: {
                 page: 'home',
-                pageTitle: 'Bug Log'
+                pageTitle: 'Project Log'
             },
-            formInputs: {
+            formInputsProjects: {
                 id: null,
-                title: null,
-                description: null,
-                projectid: null,
-                datefound: null,
-                screenshot: null,
-                isresolved: null,
-                solution: null,
+                name: null,
+                start: null,
+                deadline: null,
+                language: null,
 
             }
         }
     }
 
-    handleView = (view, bugData) => {
+    handleView = (view, projectData) => {
         let pageTitle = ''
-        let formInputs = {
+        let formInputsProjects = {
             id: null,
-            title: '',
-            description: '',
-            projectid: null,
-            datefound: '',
-            screenshot: '',
-            isresolved: false,
-            solution: ''
+            name: '',
+            start: '',
+            deadline: '',
+            language: ''
         }
         switch(view) {
             case 'home':
-                pageTitle = 'Bug Log'
+                pageTitle = 'Project Log'
+                break
+            case 'addProject':
+                pageTitle = 'Create New Project'
+                break
+            case 'editProject':
+                pageTitle = 'Update Project Details'
+                formInputsProjects = {
+                    id: projectData.id,
+                    name: projectData.title,
+                    description: projectData.description,
+                    projectid: projectData.projectid,
+                    datefound: projectData.datefound
+                }
                 break
             case 'addIssue':
                 pageTitle = 'Record New Bug'
                 break
             case 'editIssue':
-                pageTitle = 'Update Bug Record'
-                formInputs = {
-                    id: bugData.id,
-                    title: bugData.title,
-                    description: bugData.description,
-                    projectid: bugData.projectid,
-                    datefound: bugData.datefound,
-                    screenshot: bugData.screenshot,
-                    isresolved: bugData.isresolved,
-                    solution: bugData.solution,
-                }
+                pageTitle = 'Update Bug Issue'
                 break
             default:
                 break
@@ -66,7 +63,7 @@ class App extends React.Component {
                     page: view,
                     pageTitle: pageTitle
                 },
-                formInputs: formInputs
+                formInputsProjects: formInputsProjects
             })
 
     }
@@ -81,7 +78,7 @@ class App extends React.Component {
                     <Main
                         view={this.state.view}
                         handleView={this.handleView}
-                        formInputs={this.state.formInputs}
+                        formInputsProjects={this.state.formInputsProjects}
                     />
                 </div>
             </div>
