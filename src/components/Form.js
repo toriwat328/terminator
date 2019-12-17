@@ -37,13 +37,17 @@ class Form extends React.Component {
 
             })
 
-        } else if(this.props.view.page === 'addBug' || this.props.view.page === 'editBug'){
+        } else if(this.props.view.page === 'addBug'){
             this.setState({
 
-                        id: this.props.formInputsBugs.id,
+                [event.target.name]: event.target.value
+
+
+            })
+        } else if(this.props.view.page === 'editBug'){
+            this.setState({
 
                         [event.target.name]: event.target.value
-
 
             })
         }
@@ -52,7 +56,8 @@ class Form extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state)
-        console.log(this.props.formInputsBugs.id);
+        console.log(this.props.formInputsBugs.project_issue_id[0].id);
+        console.log(this.props.formInputsBugs);
         if(this.props.view.page === 'addProject') {
             this.props.handleCreate(this.state)
         } else if(this.props.view.page === 'editProject') {
@@ -60,7 +65,7 @@ class Form extends React.Component {
         } else if(this.props.view.page === 'addBug'){
             this.props.handleCreateBug(this.state)
         } else if(this.props.view.page === 'editBug'){
-            this.props.handleUpdateBug(this.state)
+            this.props.handleUpdateBug(this.state, this.props.formInputsBugs.project_issue_id[0].id)
         }
     }
 

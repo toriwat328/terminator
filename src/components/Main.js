@@ -107,9 +107,10 @@ class Main extends React.Component {
             })
     }
 
-    handleUpdateBug = (bugUpdate) => {
+    handleUpdateBug = (bugUpdate, bugId) => {
         console.log(bugUpdate)
-        fetch(`${baseUrl}/issues/${bugUpdate.id}`, {
+        console.log(bugId);
+        fetch(`${baseUrl}/issues/${bugId}`, {
             body: JSON.stringify(bugUpdate),
             method: 'PUT',
             headers: {
@@ -118,7 +119,7 @@ class Main extends React.Component {
             }
         })
             .then(updatedBug => {
-                this.props.handleView('home', '', updatedBug)
+                this.props.handleView('home', '', '')
                 this.fetchBugs()
             })
     }
@@ -223,6 +224,7 @@ class Main extends React.Component {
                         view={this.props.view}
                         handleCreateBug={this.handleCreateBug}
                         handleUpdateBug={this.handleUpdateBug}
+                        showBugData={this.state.bugShow}
                     />
                 }
             </main>
