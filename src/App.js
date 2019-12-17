@@ -33,26 +33,54 @@ class App extends React.Component {
     }
 
     handleView = (view, projectData, bugData) => {
+        console.log(projectData);
+        console.log(bugData);
         let pageTitle = ''
         let formInputsProjects = {
             id: null,
             name: '',
             start: '',
             deadline: '',
-            language: ''
-        }
-        let formInputsBugs = {
-            id: null,
-            title: '',
-            description: '',
-            projectid: null,
-            datefound: '',
-            screenshot: '',
-            isresolved: false,
-            solution: ''
+            language: '',
+            project_issue_id: [
+                {
+                    id: null,
+                    title: '',
+                    description: '',
+                    projectid: null,
+                    datefound: '',
+                    screenshot: '',
+                    isresolved: false,
+                    solution: ''
+                }
+            ]
         }
 
+        let formInputsBugs = {
+            id: projectData.id,
+            name: projectData.name,
+            start: projectData.start,
+            deadline: projectData.deadline,
+            language: projectData.language,
+            project_issue_id: [
+                {
+                    id: null,
+                    title: '',
+                    description: '',
+                    projectid: projectData.id,
+                    datefound: '',
+                    screenshot: '',
+                    isresolved: false,
+                    solution: ''
+                }
+            ]
+        }
+
+
+
+        console.log(formInputsBugs);
         switch(view) {
+
             case 'home':
                 pageTitle = 'Project Log'
                 break
@@ -63,11 +91,13 @@ class App extends React.Component {
                 pageTitle = 'Update Project Details'
                 formInputsProjects = {
                     id: projectData.id,
-                    name: projectData.title,
-                    description: projectData.description,
-                    projectid: projectData.projectid,
-                    datefound: projectData.datefound
+                    name: projectData.name,
+                    start: projectData.start,
+                    deadline: projectData.deadline,
+                    language: projectData.language,
+
                 }
+                console.log(formInputsProjects);
                 break
             case 'showProject':
                 pageTitle = 'Project Details'
@@ -81,20 +111,29 @@ class App extends React.Component {
             case 'editBug':
                 pageTitle = 'Update Bug Issue'
                 formInputsBugs = {
-                    id: bugData.id,
-                    title: bugData.title,
-                    description: bugData.description,
-                    projectid: bugData.projectid,
-                    datefound: bugData.datefound,
-                    screenshot: bugData.screenshot,
-                    isresolved: bugData.isresolved,
-                    solution: bugData.solution
+                    id: projectData.id,
+                    name: projectData.name,
+                    start: projectData.start,
+                    deadline: projectData.deadline,
+                    language: projectData.language,
+                    project_issue_id: [
+                        {
+                            id: bugData.id,
+                            title: bugData.title,
+                            description: bugData.description,
+                            projectid: bugData.projectid,
+                            datefound: bugData.datefound,
+                            screenshot: bugData.screenshot,
+                            isresolved: bugData.isresolved,
+                            solution: bugData.solution
+                        }
+                    ]
                 }
                 break
             default:
                 break
             }
-
+            console.log(formInputsBugs);
             this.setState({
                 view: {
                     page: view,

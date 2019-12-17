@@ -7,6 +7,7 @@ class Projects extends React.Component {
             <article>
                 <div className="bug-header">
                     <h1>{this.props.projectData.name}</h1>
+                    <h3>Project ID: {this.props.projectData.id}</h3>
                 </div>
                 <div className="bug-body">
                     <p>
@@ -20,13 +21,13 @@ class Projects extends React.Component {
                     <ul>
                         <li onClick={() => {
                             this.props.showProject(this.props.projectData);
-                            
+
 
 
                         }}>View Project</li>
                         <li onClick={() => {
                             this.props.handleView('editProject',
-                            this.props.projectData)
+                            this.props.projectData, '')
                         }}>Edit Project</li>
                         <li onClick={() => {
                             this.props.deleteProject(this.props.projectData.id)
