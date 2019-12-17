@@ -6,7 +6,7 @@
     --blue: #40C9CE;
     --orange: #FC9044;
     --robot: 'Orbitron', sans-serif;
-    --text:  'Quantico', sans-serif;
+    --text: 'Quantico', sans-serif;
 }
 
 /* Manage default settings for all */
@@ -46,31 +46,38 @@ Aside {
     flex-direction: column;
     max-width: 25%;
     border-right: 3px dashed var(--dark-green);
-    padding-right: 10px;
+    padding-left: 20px;
+}
+
+.nav-bar {
+    list-style-type: square;
+    text-transform: uppercase;
 }
 
 Main{
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 .main-container {
     display: flex;
-    height: 60vh;
 }
 
 h1 {
     color: var(--blue);
-    font-family: var(--robot);
     font-size: 52px;
+    font-family: var(--robot);
 }
 
 h2 {
     color: var(--blue);
+    font-size: 28px;
     font-family: var(--robot);
-    font-size: 36px;
 }
 
 Footer {
+    display: flex;
     border-top: 3px dashed var(--dark-green);
     padding-top: 10px;
+    padding-top: 40px;
+    justify-content: center;
 }

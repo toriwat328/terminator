@@ -18,7 +18,7 @@ class Projects extends React.Component {
 
                 </div>
                 <div className="bug-options">
-                    <ul>
+                    <ul className="nav-bar">
                         <li onClick={() => {
                             this.props.showProject(this.props.projectData);
 
