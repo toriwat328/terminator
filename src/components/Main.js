@@ -89,7 +89,7 @@ class Main extends React.Component {
     render () {
         return (
             <main>
-                <h1>{this.props.view.pageTitle}</h1>
+                <h2>{this.props.view.pageTitle}</h2>
 
                 { this.props.view.page === 'home'
                     ? this.state.bugs.map((bugData) => (

@@ -6,7 +6,9 @@ class Header extends React.Component {
         return (
             <header>
                 <span>squash coding bugs with the</span>
-                <h1>TERMINATOR</h1>
+                    <div className="headline">
+                    <h1>TERMINATOR</h1><span>version 1.0.0</span>
+                    </div>
                 <marquee scrollamount="10"
                         direction="left"
                         behavior="scroll">

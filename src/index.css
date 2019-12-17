@@ -36,16 +36,41 @@ header {
     max-width: 100px; /* keeps screenshots small and manageble */
 }
 
+.headline {
+    display: flex;
+    align-items: baseline;
+}
+
 Aside {
     display: inline-flex;
     flex-direction: column;
     max-width: 25%;
-
+    border-right: 3px dashed var(--dark-green);
+    padding-right: 10px;
 }
 
+Main{
+    padding-left: 10px;
+}
+
+.main-container {
+    display: flex;
+    height: 60vh;
+}
 
 h1 {
-    color: var(--orange);
+    color: var(--blue);
+    font-family: var(--robot);
+    font-size: 52px;
+}
+
+h2 {
+    color: var(--blue);
     font-family: var(--robot);
     font-size: 36px;
+}
+
+Footer {
+    border-top: 3px dashed var(--dark-green);
+    padding-top: 10px;
 }
