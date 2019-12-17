@@ -1,5 +1,4 @@
 import React from 'react'
-import bug from './bugfavi.png'
 
 class Aside extends React.Component {
     render () {
