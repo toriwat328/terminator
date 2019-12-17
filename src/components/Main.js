@@ -4,7 +4,7 @@ import Form from './Form.js'
 
 let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:8888/api'
+    baseUrl = 'http://localhost:8888/'
 } else {
     baseUrl = 'https://bug-terminator-api.herokuapp.com/api';
 }
