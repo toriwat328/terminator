@@ -65,6 +65,13 @@ Main{
     display: flex;
 }
 
+button {
+    padding: 5px;
+    margin: 10px;
+    font-size: 18px;
+    color: var(--blue);
+}
+
 h1 {
     color: var(--blue);
     font-size: 52px;
@@ -84,12 +91,16 @@ h3 {
 }
 
 h4 {
-    /* Unsure if we will utilize this */
+    color: var(--dark-green);
+    font-size: 34px;
+    font-family: var(--robot);
 }
 
 /* Footer has information of who made the app */
 Footer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     border-top: 3px dashed var(--dark-green);
     padding-top: 10px;
     padding-top: 40px;
