@@ -7,6 +7,7 @@ class Projects extends React.Component {
             <article>
                 <div className="bug-header">
                     <h1>{this.props.projectData.name}</h1>
+                    <h3>Project ID: {this.props.projectData.id}</h3>
                 </div>
                 <div className="bug-body">
                     <p>

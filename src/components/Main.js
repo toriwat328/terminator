@@ -153,6 +153,8 @@ class Main extends React.Component {
                 this.setState(prevState => {
                     const bugs = prevState.bugs.filter(bug => bug.id !== id)
                     return { bugs }
+                }, () => {
+                    this.props.handleView('home', '', '')
                 })
             })
             .catch(err => console.log(err))
