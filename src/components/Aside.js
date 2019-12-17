@@ -4,8 +4,8 @@ class Aside extends React.Component {
     render () {
         return (
             <aside>
-                <h1>Manage Projects</h1>
-                <ul>
+                <h2>Manage Projects</h2>
+                <ul className="nav-bar">
                     <li onClick={() => {this.props.handleView('home', '', '')
                         }}>Main</li>
                     <li onClick={() => {this.props.handleView('addProject', '', '')

@@ -6,7 +6,7 @@
     --blue: #40C9CE;
     --orange: #FC9044;
     --robot: 'Orbitron', sans-serif;
-    --text:  'Quantico', sans-serif;
+    --text: 'Quantico', sans-serif;
 }
 
 /* Manage default settings for all */
@@ -33,19 +33,76 @@ header {
 
 /* Set screenshot images max-width */
 .screenshot {
-    max-width: 100px; /* keeps screenshots small and manageble */
+    max-width: 150px; /* keeps screenshots small and manageble */
 }
 
+.headline {
+    display: flex;
+    align-items: baseline;
+}
+
+/* The Aside component will serve as a constant nav bar throughout all views */
 Aside {
     display: inline-flex;
     flex-direction: column;
     max-width: 25%;
-
+    border-right: 3px dashed var(--dark-green);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
+.nav-bar {
+    list-style-type: square;
+    text-transform: uppercase;
+}
+
+/* Main houses our forms and render of lists */
+Main{
+    padding-left: 20px;
+}
+
+.main-container {
+    display: flex;
+}
+
+button {
+    padding: 5px;
+    margin: 10px;
+    font-size: 18px;
+    color: var(--blue);
+}
 
 h1 {
-    color: var(--orange);
+    color: var(--blue);
+    font-size: 52px;
     font-family: var(--robot);
-    font-size: 36px;
+}
+
+h2 {
+    color: var(--blue);
+    font-size: 42px;
+    font-family: var(--robot);
+}
+
+h3 {
+    color: var(--blue);
+    font-size: 34px;
+    font-family: var(--robot);
+}
+
+h4 {
+    color: var(--dark-green);
+    font-size: 34px;
+    font-family: var(--robot);
+}
+
+/* Footer has information of who made the app */
+Footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 3px dashed var(--dark-green);
+    padding-top: 10px;
+    padding-top: 40px;
+    justify-content: center;
 }

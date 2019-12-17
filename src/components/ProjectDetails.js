@@ -6,7 +6,7 @@ class ProjectDetails extends React.Component {
         return (
             <article>
                 <div>
-                    <h1>{this.props.showData[0].name}</h1>
+                    <h3>{this.props.showData[0].name}</h3>
                 </div>
                 <div>
                     <p>Start of Project: {this.props.showData[0].start}</p>
@@ -16,9 +16,9 @@ class ProjectDetails extends React.Component {
                 </div>
 
                 <div>
-                <h2>Bugs</h2>
+                <h3>Bugs</h3>
                 <button onClick={() => {
-                    this.props.handleView('addBug', this.props.showData[0], '');
+                    this.props.handleView('addBug');
                 }}>Record New Bug</button>
 
                 {this.props.showData[0].project_issue_id !== null ?
@@ -28,10 +28,6 @@ class ProjectDetails extends React.Component {
                             key={bugData.id}
                             bugData={bugData}
                             showBug={this.props.showBug}
-                            deleteBug={this.props.deleteBug}
-                            handleView={this.props.handleView}
-                            showData={this.props.showData[0]}
-
 
                         />
                     )) :

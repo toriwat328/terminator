@@ -6,8 +6,8 @@ class Projects extends React.Component {
         return (
             <article>
                 <div className="bug-header">
-                    <h1>{this.props.projectData.name}</h1>
-                    <h3>Project ID: {this.props.projectData.id}</h3>
+                    <h3>{this.props.projectData.name}</h3>
+                    <h4>Project ID: {this.props.projectData.id}</h4>
                 </div>
                 <div className="bug-body">
                     <p>
@@ -18,7 +18,7 @@ class Projects extends React.Component {
 
                 </div>
                 <div className="bug-options">
-                    <ul>
+                    <ul className="nav-bar">
                         <li onClick={() => {
                             this.props.showProject(this.props.projectData);
 
