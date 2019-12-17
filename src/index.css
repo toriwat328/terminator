@@ -64,13 +64,13 @@ Main{
 .main-container {
     display: flex;
 }
-
+/* 
 button {
     padding: 5px;
     margin: 10px;
     font-size: 18px;
     color: var(--blue);
-}
+} */
 
 h1 {
     color: var(--blue);
