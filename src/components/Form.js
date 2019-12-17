@@ -39,8 +39,11 @@ class Form extends React.Component {
 
         } else if(this.props.view.page === 'addBug' || this.props.view.page === 'editBug'){
             this.setState({
-                
-                [event.target.name]: event.target.value
+
+                        id: this.props.formInputsBugs.id,
+
+                        [event.target.name]: event.target.value
+
 
             })
         }
@@ -48,15 +51,16 @@ class Form extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state);
+        console.log(this.state)
+        console.log(this.props.formInputsBugs.id);
         if(this.props.view.page === 'addProject') {
             this.props.handleCreate(this.state)
         } else if(this.props.view.page === 'editProject') {
             this.props.handleUpdate(this.state)
         } else if(this.props.view.page === 'addBug'){
-            this.props.handleCreate(this.state.bugs)
+            this.props.handleCreateBug(this.state)
         } else if(this.props.view.page === 'editBug'){
-            this.props.handleUpdate(this.state.bugs)
+            this.props.handleUpdateBug(this.state)
         }
     }
 
@@ -73,7 +77,7 @@ class Form extends React.Component {
                     id: this.props.formInputsBugs.id,
                     title: this.props.formInputsBugs.title,
                     description: this.props.formInputsBugs.description,
-                    projectid: this.props.formInputsBugs.projectid,
+                    projectid: this.props.formInputsProjects.id,
                     datefound: this.props.formInputsBugs.datefound,
                     screenshot: this.props.formInputsBugs.screenshot,
                     isresolved: this.props.formInputsBugs.isresolved,
@@ -121,37 +125,37 @@ class Form extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Title
-                            <input type="text" placeholder="Title" id="title" defaultValue={this.state.title} name="bugTitle"
+                            <input type="text" placeholder="Title" id="title" defaultValue={this.state.project_issue_id[0].title} name="title"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Description
-                            <input type="text" placeholder="Description" id="description" defaultValue={this.state.description} name="bugDescription"
+                            <input type="text" placeholder="Description" id="description" defaultValue={this.state.project_issue_id[0].description} name="description"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Project ID
-                            <input type="text" placeholder="Project ID" id="projectid" defaultValue={this.state.projectid} name="bugProjectID"
+                            <input type="text" placeholder="ProjectID" id="projectid" defaultValue={this.state.project_issue_id[0].projectid} name="projectid"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Date Found
-                            <input type="text" placeholder="Date Found" id="datefound" defaultValue={this.state.datefound} name="bugDateFound"
+                            <input type="text" placeholder="Date Found" id="datefound" defaultValue={this.state.project_issue_id[0].datefound} name="datefound"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Screenshot
-                            <input type="text" placeholder="Screenshot" id="screenshot" defaultValue={this.state.screenshot} name="bugScreenshot"
+                            <input type="text" placeholder="Screenshot" id="screenshot" defaultValue={this.state.project_issue_id[0].screenshot} name="screenshot"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             is This Issue Resolved?
-                            <input type="text" placeholder="Resolved?" id="isresolved" defaultValue={this.state.isresolved} name="bugIsResolved"
+                            <input type="text" placeholder="Resolved?" id="isresolved" defaultValue={this.state.project_issue_id[0].isresolved} name="isresolved"
                              onChange={this.handleChange}/>
                         </label>
                         <label>
                             Solution
-                            <input type="text" placeholder="Solution" id="solution" defaultValue={this.state.solution} name="bugSolution"
+                            <input type="text" placeholder="Solution" id="solution" defaultValue={this.state.project_issue_id[0].solution} name="solution"
                              onChange={this.handleChange}/>
                         </label>
                         <input type="submit"

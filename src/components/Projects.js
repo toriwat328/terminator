@@ -26,7 +26,7 @@ class Projects extends React.Component {
                         }}>View Project</li>
                         <li onClick={() => {
                             this.props.handleView('editProject',
-                            this.props.projectData)
+                            this.props.projectData, '')
                         }}>Edit Project</li>
                         <li onClick={() => {
                             this.props.deleteProject(this.props.projectData.id)

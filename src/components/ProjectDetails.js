@@ -18,7 +18,7 @@ class ProjectDetails extends React.Component {
                 <div>
                 <h2>Bugs</h2>
                 <button onClick={() => {
-                    this.props.handleView('addBug');
+                    this.props.handleView('addBug', this.props.showData[0], '');
                 }}>Record New Bug</button>
 
                 {this.props.showData[0].project_issue_id !== null ?
@@ -28,6 +28,10 @@ class ProjectDetails extends React.Component {
                             key={bugData.id}
                             bugData={bugData}
                             showBug={this.props.showBug}
+                            deleteBug={this.props.deleteBug}
+                            handleView={this.props.handleView}
+                            showData={this.props.showData[0]}
+
 
                         />
                     )) :

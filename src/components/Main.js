@@ -16,9 +16,9 @@ class Main extends React.Component {
         super(props)
         this.state = {
             projects: [],
-            bugs: [],
-            projectShow: [],
-            bugShow: []
+            bugs: [], //bug array
+            projectShow: [], //individual project
+            bugShow: [] //individual bug
         }
     }
 
@@ -27,6 +27,14 @@ class Main extends React.Component {
         .then(data=>data.json())
         .then(jData=> {
             this.setState({projects:jData})
+        }).catch(err=>console.log(err))
+    }
+
+    fetchBugs = () => {
+        fetch(`${baseUrl}/issues`)
+        .then(data=>data.json())
+        .then(jData=> {
+            this.setState({bugs:jData})
         }).catch(err=>console.log(err))
     }
 
@@ -51,13 +59,14 @@ class Main extends React.Component {
                 return { projects: prevState.projects}
             }, () => {
                 console.log(this.state.projects);
-                this.props.handleView('home')
+                this.props.handleView('home', '', '')
             })
         })
         .catch(err => console.log(err))
     }
 
     handleCreateBug = (createBug) => {
+        console.log(createBug);
         fetch(`${baseUrl}/issues`, {
             body: JSON.stringify(createBug),
             method: 'POST',
@@ -71,10 +80,13 @@ class Main extends React.Component {
             return createdBug.json()
         })
         .then(jsonedBugs => {
-            this.props.handleView('home')
+            console.log(jsonedBugs);
             this.setState(prevState => {
                 prevState.bugs = jsonedBugs
                 return { bugs: prevState.bugs}
+            }, () => {
+                console.log(this.state.bugs);
+                this.props.handleView('home', '', '')
             })
         })
         .catch(err => console.log(err))
@@ -90,8 +102,24 @@ class Main extends React.Component {
             }
         })
             .then(updatedProject => {
-                this.props.handleView('home')
+                this.props.handleView('home', '', '')
                 this.fetchProjects()
+            })
+    }
+
+    handleUpdateBug = (bugUpdate) => {
+        console.log(bugUpdate)
+        fetch(`${baseUrl}/issues/${bugUpdate.id}`, {
+            body: JSON.stringify(bugUpdate),
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(updatedBug => {
+                this.props.handleView('home', '', updatedBug)
+                this.fetchBugs()
             })
     }
 
@@ -112,6 +140,23 @@ class Main extends React.Component {
             .catch(err => console.log(err))
     }
 
+    deleteBug = (id) => {
+        fetch(`${baseUrl}/issues/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(json => {
+                this.setState(prevState => {
+                    const bugs = prevState.bugs.filter(bug => bug.id !== id)
+                    return { bugs }
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
     showProject = (project) => {
         fetch(`${baseUrl}/projects/${project.id}`)
         .then(data=> data.json())
@@ -119,7 +164,7 @@ class Main extends React.Component {
             this.setState({
                 projectShow: showjData
             }, () => {
-                this.props.handleView('showProject');
+                this.props.handleView('showProject', this.state.projectShow, '' );
                 console.log(this.state.projectShow);
             })
         }).catch(err=>console.log(err))
@@ -133,7 +178,7 @@ class Main extends React.Component {
             this.setState({
                 bugShow: showBugjData
             }, () => {
-                this.props.handleView('showBug');
+                this.props.handleView('showBug', '', this.state.showBug);
                 console.log(this.state.bugShow);
             })
         }).catch(err=>console.log(err))
@@ -165,9 +210,9 @@ class Main extends React.Component {
 
                         />
                     )): this.props.view.page === 'showProject' ?
-                    <ProjectDetails  showData={this.state.projectShow} handleView={this.props.handleView} showBug={this.showBug} />
+                    <ProjectDetails  showData={this.state.projectShow} handleView={this.props.handleView} showBug={this.showBug} deleteBug={this.deleteBug}/>
                     : this.props.view.page === 'showBug' ?
-                    <BugDetails showBugData={this.state.bugShow} handleView={this.props.handleView}/>
+                    <BugDetails showData={this.state.projectShow} showBugData={this.state.bugShow} handleView={this.props.handleView}/>
 
 
                     : <Form
@@ -176,6 +221,8 @@ class Main extends React.Component {
                         formInputsProjects={this.props.formInputsProjects}
                         formInputsBugs={this.props.formInputsBugs}
                         view={this.props.view}
+                        handleCreateBug={this.handleCreateBug}
+                        handleUpdateBug={this.handleUpdateBug}
                     />
                 }
             </main>

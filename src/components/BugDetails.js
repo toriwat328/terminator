@@ -1,6 +1,7 @@
 import React from 'react'
 
 class BugDetails extends React.Component {
+
     render () {
         return (
             <article>
@@ -20,7 +21,7 @@ class BugDetails extends React.Component {
                     : <p>Solution Not Found</p>}
 
                 <button onClick={() => {
-                    this.props.handleView('showProject')
+                    this.props.handleView('showProject', '', '')
                 }}>Back To Project</button>
             </div>
 
