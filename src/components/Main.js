@@ -6,9 +6,9 @@ import BugDetails from './BugDetails.js'
 
 let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:8888/'
+    baseUrl = 'http://localhost:8888'
 } else {
-    console.log('this is for heroku');
+    baseUrl = 'https://bug-terminator-api.herokuapp.com/api';
 }
 
 class Main extends React.Component {
