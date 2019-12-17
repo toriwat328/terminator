@@ -26,7 +26,7 @@ class Bugs extends React.Component {
                     }}>View Bug</li>
 
                         <li onClick={() => {
-                            this.props.handleView('editBug',
+                            this.props.handleView('editBug', this.props.showData,
                             this.props.bugData)
                         }}>Edit Bug</li>
 

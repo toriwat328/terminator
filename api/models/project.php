@@ -55,7 +55,7 @@ class Projects { //factory class - deal with all things updating, creating, dele
     }
     static function show($project_id){
         $projects = array();
-        $results = pg_query("SELECT projects.*, issue.id AS project_issue_id, issue.title, issue.description, issue.datefound, issue.screenshot, issue.isresolved, issue.solution FROM projects LEFT JOIN issue ON projects.id = issue.projectid WHERE projects.id = $project_id");
+        $results = pg_query("SELECT projects.*, issue.id AS project_issue_id, issue.title, issue.description, issue.projectid, issue.datefound, issue.screenshot, issue.isresolved, issue.solution FROM projects LEFT JOIN issue ON projects.id = issue.projectid WHERE projects.id = $project_id");
         $row_object = pg_fetch_object($results);
         $last_project_id = null;
         while($row_object){
@@ -75,7 +75,7 @@ class Projects { //factory class - deal with all things updating, creating, dele
                             intval($row_object->project_issue_id),
                             $row_object->title,
                             $row_object->description,
-                            $row_object->projectid,
+                            intval($row_object->projectid),
                             $row_object->datefound,
                             $row_object->screenshot,
                             $row_object->isresolved,
@@ -116,7 +116,7 @@ class Projects { //factory class - deal with all things updating, creating, dele
                             intval($row_object->project_issue_id),
                             $row_object->title,
                             $row_object->description,
-                            $row_object->projectid,
+                            intval($row_object->projectid),
                             $row_object->datefound,
                             $row_object->screenshot,
                             $row_object->isresolved,
