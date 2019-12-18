@@ -33,7 +33,7 @@ The terminator app is a app that organizes projects and tracks the issues for th
 
 
 ### Front-End Overview
-    
+* Front end was created using React and JSX. Navigation is fixed on left side of screen to allow user to change state and view, create, edit and delete in main component. Styling was achieved with vanilla CSS and Flexbox to create a retro computer terminal game feel.     
 
   
 ### Struggles:
@@ -41,6 +41,8 @@ The terminator app is a app that organizes projects and tracks the issues for th
 * Getting form to work to update issue model. Since the issue model is nested within the project model, it was hard to access.
 * Getting individual projects to show. In order to solve this, I have to use another callback function within fetch function so that the view changes to the individual project view after the state is set to the individual project json data that was fetched.
 * Through debugging PHP when a few properties were coming up null after new data was returned from API, I got a better understanding of what each line was doing. I console.log'd each step to catch small errors while using Postman.
+* Had issues with Github version control not recognizing minor changes that were essential to functionality of app.
+* Learned that using forms takes on a new layer of complexity in React. Overcame initial problem by assigning each input a "name" property that indicated which field the input was meant to overwrite. 
   
   
 ### What I Would Like To Add:
