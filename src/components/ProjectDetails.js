@@ -18,7 +18,8 @@ class ProjectDetails extends React.Component {
                 <div>
                 <h2>Bugs</h2>
                 <button onClick={() => {
-                    this.props.handleView('addBug', this.props.showData[0], '');
+                    this.props.handleView('addBug',
+                                         this.props.showData[0], '');
                 }}>Record New Bug</button>
 
                 {this.props.showData[0].project_issue_id !== null ?

@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './components/Header.js'
 import Aside from './components/Aside.js'
 import Main from './components/Main.js'
-import Footer from './components/Footer.js'
 
 class App extends React.Component {
     constructor(props) {
@@ -152,15 +151,14 @@ class App extends React.Component {
             <div className="outer-container">
                 <Header/>
                 <div className="main-container">
-                    <Aside className="aside" handleView={this.handleView}/>
-                    <Main className="main"
+                    <Aside handleView={this.handleView}/>
+                    <Main
                         view={this.state.view}
                         handleView={this.handleView}
                         formInputsProjects={this.state.formInputsProjects}
                         formInputsBugs={this.state.formInputsBugs}
                     />
                 </div>
-                <Footer />
             </div>
         )
     }

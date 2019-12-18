@@ -20,6 +20,4 @@ INSERT INTO issue (title, description, projectid, datefound, screenshot, isresol
 
 
 
-
-
 SELECT projects.*, issue.id AS project_issue_id, issue.title, issue.description, issue.datefound, issue.screenshot, issue.isresolved, issue.solution FROM projects LEFT JOIN issue ON projects.id = issue.projectid ORDER BY projects.id;
