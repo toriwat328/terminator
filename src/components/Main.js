@@ -9,11 +9,7 @@ let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
     baseUrl = 'http://localhost:8888/'
 } else {
-<<<<<<< HEAD
-    baseUrl = 'https://bug-terminator-api.herokuapp.com';
-=======
     baseUrl = 'https://bug-terminator-api.herokuapp.com/api';
->>>>>>> 34cb3f18d7ef42ec16d2ee7cc89946be917cdb4e
 }
 
 class Main extends React.Component {
